@@ -10881,15 +10881,12 @@ a.text-dark:focus {
 }
 
 /*------------------Custom styles------------------*/
-html {
-    font-family: 'Ubuntu';
-}
 .table_hidden {
     display: none;
 }
 
 .table_visible {
-     display: block;
+     display: table;
 }
 
 .form {

@@ -1,7 +1,9 @@
 $(function() {
-    $('form').submit(function(e) {
+    $('form[name=filter]').submit(function(e) {
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
         var form = $(this);
         var formData = new FormData();
+        formData.append('_token', CSRF_TOKEN);
         formData.append('name', form.find('input[name="name"]').val());
         formData.append('bedrooms', parseInt(form.find('select[name="bedrooms"]').val()));
         formData.append('bathrooms', parseInt(form.find('select[name="bathrooms"]').val()));
@@ -9,17 +11,21 @@ $(function() {
         formData.append('garages', parseInt(form.find('select[name="garages"]').val()));
         formData.append('from', parseInt(form.find('input[name="from"]').val()));
         formData.append('to', parseInt(form.find('input[name="to"]').val()));
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': CSRF_TOKEN
+            }
+        });
+
         $.ajax({
-            url: "http://127.0.0.1:8000/api/search",
+            url: "/api/search",
             data: formData,
             processData: false,
             contentType: false,
             dataType: 'json',
-            // async: true,
             method: 'POST',
             cache: false,
             success: function (res) {
-                console.log(res);
                 var html = '';
                 if (res.length > 0) {
                     if ($('table.table').hasClass('table_hidden')) {
@@ -49,11 +55,10 @@ $(function() {
                     $('#empty_response').html(html);
                 }
             },
-            error: function () {
-                console.log("error");
+            error: function (xhr) {
+                alert("error");
             }
         });
-        //отмена действия по умолчанию для кнопки submit
         e.preventDefault();
     });
 });

@@ -8,13 +8,16 @@
         <link href="https://fonts.googleapis.com/css?family=Ubuntu:400,500,700&display=swap&subset=cyrillic" rel="stylesheet">
         <!-- Styles -->
         <link rel="stylesheet" href="css/app.css">
+        <script src="js/app.js" charset="utf-8"></script>
+        <script src="js/custom.js" charset="utf-8"></script>
+        <meta name="csrf-token" content="{{ csrf_token() }}" />
     </head>
     <body>
     <div class="form container">
         <div class="row">
             <div class="col-md-8 offset-md-2 col-sm-12">
                 <h2>Выбирете необходимые параметры:</h2>
-                <form method="post" name="filter">
+                <form name="filter">
                     <div class="form-group row">
                         <div class="col-sm-12">
                             <label for="name" class=col-form-label">Название апартамента:</label>
@@ -89,7 +92,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="table-responsive">
-                    <table class="table table__hidden" id="table">
+                    <table class="table table_hidden" id="table">
                         <thead class="thead-dark">
                         <tr>
                             <th scope="col">#</th>
@@ -102,15 +105,6 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>56457567</td>
-                            <td>5</td>
-                            <td>2</td>
-                            <td>1</td>
-                            <td>7</td>
-                        </tr>
                         </tbody>
                     </table>
                 </div>
@@ -118,6 +112,5 @@
             </div>
         </div>
     </div>
-    <script src="js/custom.js" charset="utf-8"></script>
     </body>
 </html>
