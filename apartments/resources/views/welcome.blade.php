@@ -3,98 +3,121 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <title>Laravel</title>
-
+        <title>Апартаменты</title>
         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-
+        <link href="https://fonts.googleapis.com/css?family=Ubuntu:400,500,700&display=swap&subset=cyrillic" rel="stylesheet">
         <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
+        <link rel="stylesheet" href="css/app.css">
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
+    <div class="form container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2 col-sm-12">
+                <h2>Выбирете необходимые параметры:</h2>
+                <form method="post" name="filter">
+                    <div class="form-group row">
+                        <div class="col-sm-12">
+                            <label for="name" class=col-form-label">Название апартамента:</label>
+                            <input type="text" class="form-control" id="name" name="name">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-6">
+                            <label for="bedrooms" class=col-form-label">Количество спален:</label>
+                            <select class="form-control" id="bedrooms" name="bedrooms">
+                                <option>--Выберите--</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="bathrooms" class=col-form-label">Количество ванных комнат:</label>
+                            <select class="form-control" id="bathrooms" name="bathrooms">
+                                <option>--Выберите--</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-6">
+                            <label for="storeys" class=col-form-label">Количество этажей:</label>
+                            <select class="form-control" id="storeys" name="storeys">
+                                <option>--Выберите--</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="garages" class=col-form-label">Количество гаражей:</label>
+                            <select class="form-control" id="garages" name="garages">
+                                <option>--Выберите--</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-12">
+                            <label class=col-form-label">Цена:</label>
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" name="from" placeholder="от">
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" name="to" placeholder="до">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary mb-2">Показать результаты</button>
+                </form>
             </div>
         </div>
+    </div>
+    <div class="result container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="table-responsive">
+                    <table class="table table__hidden" id="table">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Название</th>
+                            <th scope="col">Цена</th>
+                            <th scope="col">Количество спален</th>
+                            <th scope="col">Количество ванных комнат</th>
+                            <th scope="col">Количество этажей</th>
+                            <th scope="col">Количество гаражей</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>56457567</td>
+                            <td>5</td>
+                            <td>2</td>
+                            <td>1</td>
+                            <td>7</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div id="empty_response"></div>
+            </div>
+        </div>
+    </div>
+    <script src="js/custom.js" charset="utf-8"></script>
     </body>
 </html>
